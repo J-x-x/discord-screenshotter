@@ -2,7 +2,6 @@ const { default: axios } = require('axios');
 const { MessageBuilder, Webhook } = require('discord-webhook-node');
 const fs = require('fs');
 const screenshot = require('screenshot-desktop');
-const { setInterval } = require('timers/promises');
 
 const updateFrequency = process.env.FREQUENCYMINUTES*60*1000;
 
@@ -24,5 +23,5 @@ async function sendStats() {
 
 console.log(`Monitor running!`);
 
-setInterval(function() {sendStats();}, 1000);
+setInterval(function() {sendStats();}, updateFrequency);
 sendStats();
