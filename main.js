@@ -23,5 +23,5 @@ async function sendStats() {
 
 console.log(`Monitor running!`);
 
-setInterval(function() {sendStats();}, updateFrequency);
+setInterval(function() {sendStats();}, process.env.FREQUENCYMINUTES*60*1000);
 sendStats();
