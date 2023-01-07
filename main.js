@@ -2,6 +2,7 @@ const { default: axios } = require('axios');
 const { MessageBuilder, Webhook } = require('discord-webhook-node');
 const fs = require('fs');
 const screenshot = require('screenshot-desktop');
+const { setInterval } = require('timers/promises');
 
 require('dotenv').config()
 
@@ -19,7 +20,7 @@ async function sendStats() {
     await fs.rmSync(screenshotPath);
 }
 
-setTimeout(() => {
+setInterval(() => {
     sendStats();
 }, process.env.FREQUENCYMINUTES*60*1000);
 
