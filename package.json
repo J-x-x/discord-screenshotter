@@ -21,6 +21,8 @@
     "axios": "^1.2.2",
     "discord-webhook-node": "^1.1.8",
     "dotenv": "^16.0.3",
+    "forever": "^4.0.3",
+    "forever-monitor": "^3.0.3",
     "fs": "^0.0.1-security",
     "node-tesseract-ocr": "^2.2.1",
     "screenshot-desktop": "^1.12.7"

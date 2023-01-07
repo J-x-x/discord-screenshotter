@@ -4,6 +4,8 @@ const fs = require('fs');
 const screenshot = require('screenshot-desktop');
 const { setInterval } = require('timers/promises');
 
+const updateFrequency = process.env.FREQUENCYMINUTES*60*1000;
+
 require('dotenv').config()
 
 async function sendStats() {
@@ -20,9 +22,7 @@ async function sendStats() {
     await fs.rmSync(screenshotPath);
 }
 
-setInterval(() => {
-    sendStats();
-}, process.env.FREQUENCYMINUTES*60*1000);
+console.log(`Monitor running!`);
 
-console.log("Monitor running");
+setInterval(function() {sendStats();}, 1000);
 sendStats();
