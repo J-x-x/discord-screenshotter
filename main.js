@@ -5,20 +5,23 @@ const screenshot = require('screenshot-desktop');
 
 require('dotenv').config()
 
-async function sendScreenshot() {
-    console.log("Capturing screenshot");
+async function sendStats() {
+    console.log("Capturing stats");
     const hook = new Webhook(process.env.WEBHOOKURL);
-    const embed = new MessageBuilder()
-        .setTitle(`Screenshot`);
-    let screenshotPath = await screenshot({ filename: `Screenshot${Date.now()}.jpg` });
+
+    const screenshotPath = await screenshot({ filename: `Screenshot${Date.now()}.jpg` });
+    const image = fs.readFileSync(screenshotPath);
+
+
     await hook.sendFile(screenshotPath);
     console.log(`Sent screenshot ${screenshotPath}`);
+
     await fs.rmSync(screenshotPath);
 }
 
 setTimeout(() => {
-    sendScreenshot();
-}, 60*60*1000);
+    sendStats();
+}, process.env.FREQUENCYMINUTES*60*1000);
 
 console.log("Monitor running");
-sendScreenshot();
+sendStats();
